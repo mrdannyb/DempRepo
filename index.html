@@ -1,0 +1,35 @@
+<html>
+<head></head>
+<body>
+	<h1>Project</h1>
+	<p>testing123</p>
+	<p>Hello world</p>
+	
+	<img src="https://i.pinimg.com/originals/6a/ba/2c/6aba2cc04e1493985d0d888aab6d5a54.jpg" id="search">
+	
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+var googApiKey = "AIzaSyDq6YblPQXWT8TmL8AGstREqekjf425vew";
+
+var latlon;
+var keyword = "patio";
+
+
+navigator.geolocation.getCurrentPosition(function(position) {
+	latlon = position.coords.latitude + "," + position.coords.longitude;
+});
+
+var googApiQuery = "https://maps.googleapis.com/maps/api/place/nearbysearch/jsonp?location=" + latlon + "&radius=9000&type=bar&opennow=true&keyword=" + keyword + "&key=" + googApiKey;
+
+$("#search").on("click", function(){
+	$.ajax({
+		url: googApiQuery,
+		method: "GET"
+	}).done(function(response){
+		console.log(response);
+	})
+})
+</script>
+</body>
+</html>
