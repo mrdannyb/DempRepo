@@ -1,6 +1,5 @@
 <html>
 <head></head>
-<link rel="shortcut icon" href="">
 <body>
 	<h1>Project</h1>
 	<p>testing123</p>
@@ -13,7 +12,7 @@
 <script>
 var googApiKey = "AIzaSyDq6YblPQXWT8TmL8AGstREqekjf425vew";
 
-var latlon;
+var latlon;  
 var keyword = "patio";
 
 
@@ -21,12 +20,17 @@ navigator.geolocation.getCurrentPosition(function(position) {
 	latlon = position.coords.latitude + "," + position.coords.longitude;
 });
 
-var googApiQuery = "https://maps.googleapis.com/maps/api/place/nearbysearch/jsonp?location=" + latlon + "&radius=9000&type=bar&opennow=true&keyword=" + keyword + "&key=" + googApiKey;
+//var googApiQuery = "https://maps.googleapis.com/maps/api/place/nearbysearch/jsonp?location=" + latlon + "&radius=9000&type=bar&opennow=true&keyword=" + keyword + "&key=" + googApiKey;
 
 $("#search").on("click", function(){
 	$.ajax({
-		url: googApiQuery,
-		method: "GET"
+		url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670,151.1957&radius=500&types=food&name=cruise&key=AIzaSyDnQRu47iX9MbetDAzXbaMkEceYf2Q5fR8",
+		method: "GET",
+		dataType: 'jsonp',
+    cache: false,
+    success: function(response){                          
+            console.log(response);                   
+            }       
 	}).done(function(response){
 		console.log(response);
 	})
